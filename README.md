@@ -7,7 +7,8 @@ mate 1 chrom <TAB> mate 1 alignment start coordinate rounded to nearest 100 \
 ```
 . We ran 
 ```
-samtools view <a TCGA RNA-seq BAM> | mawk -f omfgene.awk | sort | uniq -c | gzip ><a TCGA RNA-seq BAM>.discord.tsv.gz
+samtools view <a TCGA RNA-seq BAM> | mawk -f omfgene.awk | sort | uniq -c \
+    | gzip ><a TCGA RNA-seq BAM>.discord.tsv.gz
 ```
 across TCGA RNA-seq BAMs that were previously aligned to hg19 using [Seven Bridges' Cancer Genomics Cloud](https://cgc.sbgenomics.com/), where `mawk` is [a fast implementation](http://invisible-island.net/mawk/) of awk. This was done by
 
