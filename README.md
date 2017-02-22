@@ -29,4 +29,5 @@ Note the `docker login` command above required entering a username (ours was `an
         {  filepath = $job.inputs.input_file.path;  filename = filepath.split("/").pop();
             return filename + ".discord.tsv.gz"}
 . This was also what we entered as the "Glob" of an output port.
-3. 
+3. using the CGC workflow editor to create the workflow `omfgene-wrapper`, which was set up to allow batching inputs to the `omfgene` tool by file. We set `sbg:AWSInstanceType` to `m1.small` for the workflow.
+4. ran `omfgene-wrapper` on all 13,307 RNA-seq BAMs on CGC.
