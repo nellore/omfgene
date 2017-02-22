@@ -14,7 +14,7 @@ function rnd(v) {
 }
 
 # Parse SAM
-# If primary alignment AND mate mapped AND (mate is on different chr OR mate is more than 500k away)
+# If mate mapped AND (mate is on different chr OR mate is more than 500k away)
 # print alignments rounded to nearest 100
 # Format: mate 1 chrom TAB mate 1 rounded coordinate TAB mate 2 chrom TAB mate 2 rounded coordinate TAB 1 if secondary else 0
 $7 != "*" && ($7 != "=" && $7 != $3 || (abs($4-$8) > 500000)) {
