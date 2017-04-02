@@ -196,15 +196,23 @@ if __name__ == '__main__':
                 formatter_class=argparse.RawDescriptionHelpFormatter)
     # Add command-line arguments
     parser.add_argument('--tcga-metadata', type=str, required=True,
-        help='path to TCGA metadata file, which can be downloaded at '
-             'http://duffel.rail.bio/recount/TCGA/TCGA.tsv')
+            help='path to TCGA metadata file, which can be downloaded at '
+                 'http://duffel.rail.bio/recount/TCGA/TCGA.tsv'
+        )
     parser.add_argument('--omfgene-output', type=str, required=True,
-        help='directory containing omfgene tsv.gzs')
+            help='directory containing omfgene tsv.gzs'
+        )
     parser.add_argument('--output', type=str, required=True,
-        help='output directory')
+            help='output directory'
+        )
+    parser.add_argument('--discordex-filename', type=str, required=False,
+            default='discordex.v1.hg19.tsv.gz',
+            help='discordex filename'
+        )
     parser.add_argument('--temp-dir', type=str, required=False,
-        default=None,
-        help='where to store temporary files')
+            default=None,
+            help='where to store temporary files'
+        )
     args = parser.parse_args()
     '''Consider only UNCID*.bam.discord.tsv.gz's; others correspond to 
     different alignment protocols.'''
@@ -279,7 +287,7 @@ if __name__ == '__main__':
     with xopen(
             None, os.path.join(temp_dir, 'merged.tsv.gz')
         ) as merged_stream, xopen(True,
-                os.path.join(args.output, 'discordex.v1.hg19.tsv.gz'
+                os.path.join(args.output, args.discordex_filename
             ), 'w') as discordex_stream:
         for key, xpartition in xstream(merged_stream, 4):
             samples_and_coverages = zip(*list(xpartition))[::-1]
