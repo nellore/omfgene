@@ -31,3 +31,5 @@ Note the `docker login` command above required entering a username (ours was `an
 . This was also what we entered as the "Glob" of an output port.
 3. using the CGC workflow editor to create the workflow `omfgene-wrapper`, which was set up to allow batching inputs to the `omfgene` tool by file. We set `sbg:AWSInstanceType` to `c4.8xlarge` and `sbg:maxNumberOfParallelInstances` to `10`.
 4. running `omfgene-wrapper` on all 13,307 RNA-seq BAMs on CGC using the `omfgene_submit.ipynb` IPython notebook. This notebook was created by Raunaq Malhotra and Erik Lehnert at Seven Bridges.
+
+We next downloaded the output from CGC and ran `discordex.py` to obtain `samples.tsv` and `discordex.v1.hg19.tsv.gz`, which is indexed in an experimental [Snaptron](http://snaptron.cs.jhu.edu/) instance.
