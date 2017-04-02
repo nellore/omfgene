@@ -279,8 +279,9 @@ if __name__ == '__main__':
     sort_process = subprocess.Popen(
         ('set -exo pipefail; '
          'cd {}; gzip -cd {} | '
-         'sort -k1,1 -k2,2n -k3,3 -k4,4n -k6,6n | gzip >{}').format(
+         'sort -k1,1 -k2,2n -k3,3 -k4,4n -k6,6n -T {} | gzip >{}').format(
                 temp_dir, 'to_merge.tsv.gz',
+                temp_dir,
                 'merged.tsv.gz'
             ), executable='/bin/bash', shell=True)
     sort_process.wait()
