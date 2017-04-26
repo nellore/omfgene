@@ -199,6 +199,10 @@ if __name__ == '__main__':
             help='path to TCGA metadata file, which can be downloaded at '
                  'http://duffel.rail.bio/recount/TCGA/TCGA.tsv'
         )
+    parser.add_argument('--sample-ids', type=str, required=True,
+            help='path to sample IDs file, which can be downloaded at '
+                 'https://jhubiostatistics.shinyapps.io/recount/'
+                 'sample_ids.tsv')
     parser.add_argument('--omfgene-output', type=str, required=True,
             help='directory containing omfgene tsv.gzs'
         )
