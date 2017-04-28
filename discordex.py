@@ -10,7 +10,9 @@ Requires directory containing output of omfgene_wrapper from CGC. See README.md
 for more information on how to reproduce this output.
 
 Also requires TCGA.tsv, which is obtained from
-http://duffel.rail.bio/recount/TCGA/TCGA.tsv .
+http://duffel.rail.bio/recount/TCGA/TCGA.tsv , and sample_ids.tsv, which is 
+obtained from https://jhubiostatistics.shinyapps.io/recount/sample_ids.tsv and
+is also in this directory.
 
 Writes two files:
 samples.tsv, with tab-separated columns
@@ -222,7 +224,7 @@ if __name__ == '__main__':
     different alignment protocols.'''
     omfgene_files = glob.glob(
             os.path.join(args.omfgene_output,
-                         'UNCID*.sorted_genome_alignments.bam.discord.tsv.gz')
+                         '*.bam.discord.tsv.gz')
         )
     bam_id_to_gdc_uuid = {}
     with open(args.tcga_metadata) as metadata_stream:
@@ -230,7 +232,7 @@ if __name__ == '__main__':
         for line in metadata_stream:
             tokens = line.strip().split('\t')
             try:
-                bam_id_to_gdc_uuid[tokens[24].split('.')[1]] = (
+                bam_id_to_gdc_uuid[tokens[24].partition('_')[0]] = (
                         tokens[21], tokens[22]
                     )
             except IndexError:
