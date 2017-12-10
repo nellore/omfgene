@@ -10,7 +10,7 @@ mate 1 chrom <TAB> mate 1 alignment start coordinate rounded to nearest 100 \
 samtools view <a TCGA RNA-seq BAM> | mawk -f omfgene.awk | sort | uniq -c \
     | gzip ><a TCGA RNA-seq BAM>.discord.tsv.gz
 ```
-across TCGA RNA-seq BAMs that were previously aligned to hg19 using [Seven Bridges' Cancer Genomics Cloud](https://cgc.sbgenomics.com/), where `mawk` is [a fast implementation](http://invisible-island.net/mawk/) of awk. This was done by
+across TCGA RNA-seq BAMs that were previously aligned to hg38 with STAR's 2-pass protocol on [Seven Bridges' Cancer Genomics Cloud](https://cgc.sbgenomics.com/), where `mawk` is [a fast implementation](http://invisible-island.net/mawk/) of awk. This was done by
 
 1. creating the Docker image omfgene using `Dockerfile` in `cgcrun/`. We ran the following sequence of commands
         cd /path/to/omfgene/cgcrun
@@ -33,4 +33,4 @@ Note the `docker login` command above required entering a username (ours was `an
 3. using the CGC workflow editor to create the workflow `omfgene-wrapper`, which was set up to allow batching inputs to the `omfgene` tool by file. We set `sbg:AWSInstanceType` to `c4.8xlarge` and `sbg:maxNumberOfParallelInstances` to `10`.
 4. running `omfgene-wrapper` on all 11,096 STAR 2-pass _hg38_ RNA-seq BAMs on CGC using the `omfgene_submit.ipynb` IPython notebook. This notebook was created by Raunaq Malhotra and Erik Lehnert at Seven Bridges.
 
-We next downloaded the output from CGC and ran `discordex.py` to obtain `samples.tsv` and `discordex.v1.hg19.tsv.gz`, which is indexed in an experimental [Snaptron](http://snaptron.cs.jhu.edu/) instance.
+We next downloaded the output from CGC and ran `discordex.py` to obtain `samples.tsv` and `discordex.v2.hg38.tsv.gz`, which is indexed in an experimental [Snaptron](http://snaptron.cs.jhu.edu/) instance.
