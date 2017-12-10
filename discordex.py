@@ -2,9 +2,11 @@
 """
 discordex.py
 
-Merges all UNCID_*.sorted_genome_alignments.bam.discord.tsv.gz files containing
-instances of discordant alignments rounded to nearest 100th coordinate.
-Considers only primary alignments.
+Merges all *gdc_realn_rehead.bam.discord.tsv.gz files containing instances of
+discordant alignments rounded to nearest 100th coordinate. Considers only
+primary alignments. Raw input files for v2 are currently in
+/work-zfs/blangme2/nellore/discordex_v2 on MARCC; the directory should be
+passed to this script as --omfgene-output to reproduce results.
 
 Requires directory containing output of omfgene_wrapper from CGC. See README.md
 for more information on how to reproduce this output.
