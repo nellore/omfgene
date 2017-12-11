@@ -324,10 +324,10 @@ if __name__ == '__main__':
                 'merged.tsv.gz'
             ), executable='/bin/bash', shell=True)
     sort_process.wait()
-    with xopen(
-            None, os.path.join(temp_dir, 'merged.tsv.gz')
+    with xopen(True,
+            'merged.tsv.gz'
         ) as merged_stream, xopen(True,
-                os.path.join(args.output, args.discordex_filename
+                os.path.join(args.output, 'discordex.v2.hg38.tsv.gz'
             ), 'w') as discordex_stream:
         for key, xpartition in xstream(merged_stream, 4):
             samples_and_coverages = zip(*list(xpartition))[::-1]
